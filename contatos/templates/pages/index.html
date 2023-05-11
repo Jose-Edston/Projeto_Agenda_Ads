@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <h1>Agenda</h1>
@@ -17,6 +17,18 @@
         <button type="submit">Buscar</button>
     </form>
 
+    
+    <div class="add-ativo-inativo">
+        <div class="add-btn">
+            <a href="{% url 'adicionar' %}">Adicionar contato</a>
+        </div>
+        <div class="ativo">
+            <a href="{% url 'adicionar' %}">Ativo</a>
+        </div>
+        <div class="inativo">
+            <a href="{% url 'adicionar' %}">Inativo</a>
+        </div>
+    </div>
     <table>
         <thead>
             <tr>
@@ -27,25 +39,23 @@
                 <th>Ativo</th>
             </tr>
         </thead>
-
         <tbody>
             {% for contato in contatos %}
             <tr>
                 <td>{{contato.id}}</td>
-                <td>{{contato.nome}}</td>
+                <td><a href="{% url 'detalhes' contato.id  %}">{{contato.nome}}</a></td>
                 <td>{{contato.email}}</td>
                 <td>{{contato.cpf}}</td>
 
                 {% if contato.ativo == True %}
-                <td><i class="fa-solid fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
                 {% else %}
-                <td><i class="fa-sharp fa-solid fa-xmark"></i></td>
+                <td><i class="fa fa-xmark"></i></td>
                 {% endif %}
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
     <div class="pagination">
         <a href="#">1</a>
         <a href="#">2</a>

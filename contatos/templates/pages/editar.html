@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Contato</title>
+    <script defer src="{% static 'jquery.mask.js' %}"></script>
+    <script defer src="{% static 'jquery.mask.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data" action=""> {% csrf_token %}
+        <input name="nome" value="{{contato.nome}}" type="text" placeholder="nome">
+        <input class="cpf" name="cpf" value="{{contato.cpf}}" type="text" placeholder="cpf">
+        <input name="email" value="{{contato.email}}" type="text" placeholder="email">
+        <input class="telefone" name="telefone" value="{{contato.telefone}}" type="text" placeholder="telefone">
+        <input class="altura" name="altura" value="{{contato.altura}}" type="text" placeholder="altura">
+        <input name="descricao" value="{{contato.descricao}}" type="text" placeholder="descrição">
+        <input name="data_nasc" value="{{contato.data_nascimento | date:'Y-m-d'}}" type="date" placeholder="data nascimento">
+        <!-- verificar alteração de fotos -->
+        <input name="check" type="checkbox" {% if contato.ativo == True %} checked{% endif %}>
+        <input name="imagem" value="{{contato.imagem.url}}" type="file">
+        <button type="submit">Editar</button>
+    </form>
+
+
+    <script>
+        $(document).ready(function(){
+            $('.altura').mask('0.00');
+            $('.cpf').mask('000.000.000-00');
+            $('.telefone').mask('(00) 0000-0000');
+        })
+    </script>
+
+</body>
+</html>
