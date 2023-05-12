@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . models import Contatos
+from django.contrib.auth.decorators import login_required
 
+@login_required(redirect_field_name='login')
 def index(request):
     contatos = Contatos.objects.filter(ativo=False).order_by('-id')  
     #esse order_by faz a ordenação por que quiser, o "-id" é para exibir do maior para o menor, mas poderia fazer também por nome em ordem alfabética
@@ -12,7 +14,8 @@ def search(request):
     return render(request, 'pages/index.html', {'contatos':contatos})
 
 def detalhes(request, id):
-    contato = Contatos.objects.get(id=id)
+    # contato = Contatos.objects.get(id=id)
+    contato = get_object_or_404(Contatos, id=id)
     return render(request, 'pages/detalhes.html', {'contato':contato})
 
 def deletar(request, id):
@@ -51,6 +54,7 @@ def editar(request, id):
         data = request.POST.get('data_nasc')
         telefone = request.POST.get('telefone')
         imagem = request.FILES.get('imagem')
+        print(imagem)
         check = request.FILES.get('check')
         if check == None:
             check = False
@@ -64,7 +68,8 @@ def editar(request, id):
         contato.descricao = descricao
         contato.data_nascimento = data
         contato.telefone = telefone
-        contato.imagem = imagem
+        if imagem != None:
+            contato.imagem = imagem
         contato.ativo = check
         contato.save()
 

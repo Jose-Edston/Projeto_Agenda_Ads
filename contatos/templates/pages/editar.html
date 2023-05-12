@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Contato</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="{% static 'jquery.mask.js' %}"></script>
     <script defer src="{% static 'jquery.mask.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -19,18 +21,32 @@
         <input class="altura" name="altura" value="{{contato.altura}}" type="text" placeholder="altura">
         <input name="descricao" value="{{contato.descricao}}" type="text" placeholder="descrição">
         <input name="data_nasc" value="{{contato.data_nascimento | date:'Y-m-d'}}" type="date" placeholder="data nascimento">
-        <!-- verificar alteração de fotos -->
         <input name="check" type="checkbox" {% if contato.ativo == True %} checked{% endif %}>
-        <input name="imagem" value="{{contato.imagem.url}}" type="file">
+        <!-- verificar alteração de fotos -->
+        {% if contato.imagem %}
+        <label for="img">Icone</label>
+        <input id="img" name="imagem" value="{{contato.imagem.url}}" type="file" accept="iamge/*">
+        {% else %}
+        <label for="img"><i class='fas fa-upload' style='font-size:36px'></i></label>
+        <input id="img" name="imagem" type="file">
+        {% endif %}
         <button type="submit">Editar</button>
     </form>
 
+    <img class="img_input" src="" alt="">
 
     <script>
         $(document).ready(function(){
             $('.altura').mask('0.00');
             $('.cpf').mask('000.000.000-00');
             $('.telefone').mask('(00) 0000-0000');
+        })
+
+        let img = document.querySelector('#img')
+        let img_input = document.querySelector('.img_input')
+
+        img.addEventListener('change', function(){
+            img_input.src = window.URL.createObjectURL(this.files[0]);
         })
     </script>
 
