@@ -15,6 +15,13 @@
     
     <form class="tela_login" method="POST">  {% csrf_token %}
         <h1>LOGIN</h1>
+        <div class="message">
+            {% if messages %}
+                {% for message in messages %}
+                    <h6>{{message}}</h6>
+                {% endfor %}
+            {% endif %}
+        </div>
         <!-- <i class='fas fa-user'></i> -->
         <input class="name" name="username" type="text" placeholder="Usuário">
         <!-- <i class='fas fa-lock'></i> -->

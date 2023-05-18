@@ -66,9 +66,6 @@ form{
     padding: 0 2px;
 }
 
-
-
-
 .card{
     position: relative;
     max-width: 380px;
@@ -90,7 +87,6 @@ form{
     text-align: center;
 }
 
-
 .description{
     max-height: 200px;
     overflow-y: auto;
@@ -102,8 +98,6 @@ form{
     padding-bottom: 3px;
    
 }
-
-
 
 .profile{
     border-radius: 50%;
@@ -257,6 +251,10 @@ form{
     border-radius: 15px;
 }
 
+.tela_login > .message{
+    margin-bottom: 18px;
+    color: red;
+}
   
 .tela_login > .name, .password {
     padding: 10px;
@@ -281,10 +279,35 @@ form{
     background-color: #0056b3;
 }
 
+.logout_user{
+    display: flex;
+    width: 800px;
+    margin: 5px auto;
+    gap: 5px;
+    justify-content: right;
+}
+
+.botao_logout{
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* margin: 10px auto; */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.botao_logout:hover {
+    background-color: #0056b3;
+}
+
 .tela_login > h1{
     font-weight: bold;
     font-size: x-large;
-    margin: 30px auto;
+    margin: 20px auto;
 }
 
 /* ############### */
@@ -301,7 +324,7 @@ form{
 }
 
   
-.tela_register > .name, .password {
+.tela_register > .name_register, .password_register {
     padding: 10px;
     width: 300px;
     gap: 10px;
@@ -311,7 +334,7 @@ form{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
   
-.tela_register > .botao {
+.tela_register > .botao_register {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -321,7 +344,7 @@ form{
     cursor: pointer;
 }
   
-.tela_register > .botao:hover {
+.tela_register > .botao_register:hover {
     background-color: #0056b3;
 }
 
