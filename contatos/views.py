@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(redirect_field_name='login')
 def index(request):
-    contatos = Contatos.objects.filter(ativo=False).order_by('-id')  
+    contatos = Contatos.objects.filter(usuario_id=request.user.id).order_by('-id')  
     #esse order_by faz a ordenação por que quiser, o "-id" é para exibir do maior para o menor, mas poderia fazer também por nome em ordem alfabética
     return render(request, 'pages/index.html', {'contatos':contatos})
 
@@ -34,7 +34,8 @@ def adicionar(request):
         data = request.POST.get('data_nasc')
         telefone = request.POST.get('telefone')
         imagem = request.FILES.get('imagem')
-        novo_contato = Contatos(nome=nome,cpf=cpf, email=email, altura=altura, descricao=descricao, data_nascimento=data, telefone=telefone, imagem=imagem, ativo=True)
+        novo_contato = Contatos(usuario_id=request.user.id, nome=nome,cpf=cpf, email=email, altura=altura, descricao=descricao, data_nascimento=data, telefone=telefone, imagem=imagem, ativo=True)
+        # request.user.id pega sempre o valor do usuário logado, ou seja, ele ja pega a informação de quem é o usuário logado
         novo_contato.save()
         return redirect('home')
 

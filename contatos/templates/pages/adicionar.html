@@ -12,15 +12,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data" action=""> {% csrf_token %}
+    <form class="form-input" method="POST" enctype="multipart/form-data" action=""> {% csrf_token %}
         <input name="nome" type="text" placeholder="nome">
         <input class="cpf" name="cpf" type="text" placeholder="cpf">
         <input name="email" type="text" placeholder="email">
         <input class="telefone" name="telefone" type="text" placeholder="telefone">
         <input class="altura" name="altura" type="text" placeholder="altura">
         <input name="descricao" type="text" placeholder="descrição">
-        <input name="data_nasc" type="date" placeholder="data nascimento">
-        <input name="imagem" type="file">
+        <input name="data_nasc" type="date">
+        
+        <div class="add-image">
+               
+            <label for="select-img">
+                <img id="img" src="https://www.ferramentastenace.com.br/wp-content/uploads/2017/11/sem-foto.jpg" alt=""> 
+            </label>
+        </div>
+        <input id="select-img" name="imagem" type="file">
+        
+
         <button type="submit">Adicionar</button>
     </form>
 

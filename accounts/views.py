@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 def user_login(request):
@@ -22,3 +24,17 @@ def user_login(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
+
+def register(request):
+
+    if request.method == "POST":
+        user = request.POST['username']  #outra forma de fazer a mesma função dos abaixo
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password_repeat = request.POST.get('password_repeat')
+
+        User.objects.create_user(username=user, password=password, email=email)
+        return redirect('login')
+
+    else:
+        return render(request, 'pages/register.html')

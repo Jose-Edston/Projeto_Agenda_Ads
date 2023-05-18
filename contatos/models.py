@@ -1,6 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
 
 class Contatos(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE) #models.CASCADE ele elimina tudo, o models.DO_NOTHING não faz nada com as informações 
     nome = models.CharField(max_length=255)
     imagem = models.ImageField()
     cpf = models.CharField(max_length=14)
