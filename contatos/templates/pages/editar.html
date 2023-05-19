@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data" action=""> {% csrf_token %}
+    <form class="form-input" method="POST" enctype="multipart/form-data" action=""> {% csrf_token %}
         <input name="nome" value="{{contato.nome}}" type="text" placeholder="nome">
         <input class="cpf" name="cpf" value="{{contato.cpf}}" type="text" placeholder="cpf">
         <input name="email" value="{{contato.email}}" type="text" placeholder="email">
@@ -21,7 +21,7 @@
         <input class="altura" name="altura" value="{{contato.altura}}" type="text" placeholder="altura">
         <input name="descricao" value="{{contato.descricao}}" type="text" placeholder="descrição">
         <input name="data_nasc" value="{{contato.data_nascimento | date:'Y-m-d'}}" type="date" placeholder="data nascimento">
-        <input name="check" type="checkbox" {% if contato.ativo == True %} checked{% endif %}>
+        <input name="check" type="checkbox" {% if contato.ativo == True %} checked {% endif %}>
         <!-- verificar alteração de fotos -->
         {% if contato.imagem %}
         <label for="img">Icone</label>
