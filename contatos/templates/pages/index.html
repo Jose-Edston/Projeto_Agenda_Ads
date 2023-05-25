@@ -10,7 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <h1>Agenda</h1>
+    <div class="navbar">
+        <h1>Agenda</h1>
+        
+        <div class="user">
+            <p>{{user}}</p>
+            <a href="{% url 'logout' %}" class="botao_logout">Sair</a>
+        </div>
+    </div>
+
 
     <form action="{% url 'busca' %}">
         <div class="form-inputs">
@@ -59,10 +67,6 @@
         <a href="#">3</a>
         <a href="#">4</a>
         <a href="#">5</a>
-    </div>
-
-    <div class="logout_user">
-        <a href="{% url 'logout' %}" class="botao_logout">Sair</a>
     </div>
 
 </body>

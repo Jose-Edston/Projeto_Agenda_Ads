@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . models import Contatos
 from django.contrib.auth.decorators import login_required
+import openai
 
 @login_required(redirect_field_name='login')
 def index(request):
@@ -31,6 +32,8 @@ def adicionar(request):
         email = request.POST.get('email')
         altura = request.POST.get('altura')
         descricao = request.POST.get('descricao')
+        if descricao == '':
+            descricao = gerarDescricao(nome)
         data = request.POST.get('data_nasc')
         telefone = request.POST.get('telefone')
         imagem = request.FILES.get('imagem')
@@ -42,7 +45,7 @@ def adicionar(request):
 
     else:
         return render(request, 'pages/adicionar.html')
-    
+
 
 def editar(request, id):
     contato = Contatos.objects.get(id=id)
@@ -78,3 +81,18 @@ def editar(request, id):
 
     else:
         return render(request, 'pages/editar.html', {'contato': contato})
+    
+def gerarDescricao(nome):
+    API_KEY = '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'
+    modelo = 'text-davinci-003'
+    pergunta = f'Gere uma descrição com 20 palavras de uma pessoa com o nome {nome}'
+
+    openai.api_key = API_KEY
+
+    responde = openai.Completion.create(
+        model=modelo,
+        prompt=pergunta,
+        max_tokens=1024
+    )
+
+    return(responde.choices[0]['text'])

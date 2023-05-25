@@ -6,6 +6,26 @@
     text-decoration: none;
 }
 
+.navbar{
+    padding: 12px 30px;
+    margin-bottom: 20px;
+    background-color: darkgreen;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.user > a{
+    color: white;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 table{
     width:800px;
     margin: 10px auto;
