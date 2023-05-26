@@ -16,7 +16,7 @@
     color: white;
 }
 
-.user > a{
+.user > a,.navbar > a{
     color: white;
 }
 

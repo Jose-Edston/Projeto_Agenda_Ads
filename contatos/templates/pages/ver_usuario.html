@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    
+    <div class="navbar">
+        <h1>Usuários</h1>
+        
+        <div class="user">
+            <p>{{user}}</p>
+            <a href="{% url 'logout' %}" class="botao_logout">Sair</a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usuários</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario.id}}</td>
+                <td><a href="{% url 'home' %}">{{usuario.username}}</a></td>
+                <td>{{usuario.email}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

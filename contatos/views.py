@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from . models import Contatos
 from django.contrib.auth.decorators import login_required
 import openai
+from django.contrib.auth.models import User
 
 @login_required(redirect_field_name='login')
 def index(request):
@@ -25,7 +26,6 @@ def deletar(request, id):
     return redirect('home')
 
 def adicionar(request):
-
     if request.method == 'POST':
         nome = request.POST.get('nome')
         cpf = request.POST.get('cpf')
@@ -96,3 +96,7 @@ def gerarDescricao(nome):
     )
 
     return(responde.choices[0]['text'])
+
+def ver_usuario(request):
+    usuarios = User.objects.all()
+    return render(request, 'pages/ver_usuario.html', {'usuarios':usuarios})

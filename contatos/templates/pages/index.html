@@ -12,7 +12,9 @@
 <body>
     <div class="navbar">
         <h1>Agenda</h1>
-        
+        {% if user.is_superuser %}
+        <a href="{% url 'ver_usuario' %}">Ver Usuários</a>
+        {% endif %}
         <div class="user">
             <p>{{user}}</p>
             <a href="{% url 'logout' %}" class="botao_logout">Sair</a>
